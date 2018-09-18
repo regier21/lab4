@@ -46,7 +46,7 @@ public class PhotoFun extends AppCompatActivity {
                 (Button) findViewById(R.id.grayFilterButton);
         grayFilterButton.setOnClickListener(new grayFilterButtonListener());
         Button brightnessFilterButton =
-                (Button) findViewById(R.id.brightnessFilterButton);
+                (Button) findViewById(R.id.westEdgeFilterButton);
         brightnessFilterButton.setOnClickListener
                 (new brightnessFilterButtonListener());
     }

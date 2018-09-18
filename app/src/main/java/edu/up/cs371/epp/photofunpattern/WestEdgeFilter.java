@@ -13,8 +13,6 @@ import android.graphics.Color;
 
 public class WestEdgeFilter extends PhotoFilter {
 
-    private final int ADJUSTMENT = 100;
-
     /*
     * tranformPixel This method overrides the transformPixel in the parent
     * class. It adds 100 to each RGB color component. The maxium value of each
@@ -23,12 +21,29 @@ public class WestEdgeFilter extends PhotoFilter {
     * @param inPixel is a 32 bit pixel that contains RGB color values
     * @return a new Pixel in which each of the RGB components has been increased
     */
-    public int transformPixel(int inPixel[][]) {
-        int red = constrain(Color.red(inPixel[1][1]) + ADJUSTMENT);
-        int green = constrain(Color.green(inPixel[1][1]) + ADJUSTMENT);
-        int blue = constrain(Color.blue(inPixel[1][1]) + ADJUSTMENT);
-        int outPixel = Color.argb(Color.alpha(inPixel[1][1]), red, green, blue);
+    public int transformPixel(int inPixel[]) {
+
+        int westEdgePixelRed = 0;
+        for (int i = 0; i < inPixel.length; i ++) {
+            westEdgePixelRed += inPixel[i];
+            if(i > 4) westEdgePixelRed += (inPixel[i] * -1);
+            else if(i == 8) westEdgePixelRed += (inPixel[i] * -2);
+        }
+
+        westEdgePixelRed = westEdgePixelRed/9;
+        int red = constrain(Color.red(westEdgePixel));
+        int green = constrain(Color.green(westEdgePixel));
+        int blue = constrain(Color.blue(westEdgePixel));
+        int outPixel = Color.argb(Color.alpha(westEdgePixel), red, green, blue);
         return outPixel;
+    }
+
+    public int getPixelColor(int westEdgePixel) {
+        for (int i = 0; i < inPixel.length; i ++) {
+            westEdgePixel += inPixel[i];
+            if(i > 4) westEdgePixel += (inPixel[i] * -1);
+            else if(i == 8) westEdgePixel += (inPixel[i] * -2);
+        }
     }
 
 }
