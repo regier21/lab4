@@ -70,7 +70,7 @@ public class PhotoFun extends AppCompatActivity {
     private class brightnessFilterButtonListener
             implements View.OnClickListener {
         public void onClick(View button) {
-            BrightnessFilter filter = new BrightnessFilter();
+            WestEdgeFilter filter = new WestEdgeFilter();
             myNewImageView.setImageBitmap(filter.apply(myOriginalBmp));
         }
     }
