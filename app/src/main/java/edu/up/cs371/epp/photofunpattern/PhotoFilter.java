@@ -36,8 +36,8 @@ public abstract class PhotoFilter {
     * @param inPixel is a 32 bit pixel that contains RGB color values
     * @return a new Pixel in which unchanged color components
     */
-    protected int transformPixel (int inPixel){
-        return inPixel;
+    protected int transformPixel (int inPixel[][]){
+        return inPixel[1][1];
     }
 
     /*
@@ -55,11 +55,43 @@ public abstract class PhotoFilter {
 
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
-                int inPixel = inBmp.getPixel(w,h);
+                int[][] inPixel = getPixelGrid(w,h,inBmp);
                 int outPixel = transformPixel(inPixel);
                 newBmp.setPixel(w, h, outPixel);
             }
         }
         return newBmp;
+    }
+
+    protected int[][] getPixelGrid (int x, int y, Bitmap inBmp) {
+        int[][] pixelGrid = new int[3][3];
+
+        if( x > 0 ) {
+            if( y > 0 ) {
+                pixelGrid[0][0] = inBmp.getPixel(x-1,y-1);
+            }
+            if( y < inBmp.getHeight()-1) {
+                pixelGrid[0][2] = inBmp.getPixel(x-1,y+1);
+            }
+            pixelGrid[0][1] = inBmp.getPixel(x-1,y);
+        }
+        if( x < inBmp.getWidth()-1) {
+            if( y > 0 ) {
+                pixelGrid[2][0] = inBmp.getPixel(x+1,y-1);
+            }
+            if( y < inBmp.getHeight()-1) {
+                pixelGrid[2][2] = inBmp.getPixel(x+1,y+1);
+            }
+            pixelGrid[2][1] = inBmp.getPixel(x+1,y);
+        }
+        if( y > 0 ) {
+            pixelGrid[1][0] = inBmp.getPixel(x,y-1);
+        }
+        if( y < inBmp.getHeight()-1) {
+            pixelGrid[1][2] = inBmp.getPixel(x,y+1);
+        }
+        pixelGrid[1][1] = inBmp.getPixel(x,y);
+
+        return pixelGrid;
     }
 }
