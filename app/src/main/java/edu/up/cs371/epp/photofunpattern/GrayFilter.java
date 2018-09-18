@@ -78,6 +78,7 @@ public class GrayFilter extends PhotoFilter {
             }
         }
         return newBmp;
+
     }
 
     /*
