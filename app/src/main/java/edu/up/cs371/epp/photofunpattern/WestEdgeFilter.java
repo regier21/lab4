@@ -30,32 +30,32 @@ public class WestEdgeFilter extends PhotoFilter {
 
         for (int i = 0; i < inPixel.length; i++) {
             if (i <= 4) westEdgePixelRed += constrain(Color.red(inPixel[i]));
-            if(i > 4 && i < 8) westEdgePixelRed += constrain(Color.red(inPixel[i] * -1));
-            else if(i == 8) westEdgePixelRed += constrain(Color.red(inPixel[i] * -2));
+            if(i > 4 && i < 8) westEdgePixelRed += constrain(Color.red(inPixel[i])* -1);
+            else if(i == 8) westEdgePixelRed += constrain(Color.red(inPixel[i]) * -2);
         }
 
         for (int i = 0; i < inPixel.length; i++) {
             if (i <= 4) westEdgePixelGreen += constrain(Color.green(inPixel[i]));
-            if(i > 4 && i < 8) westEdgePixelGreen += constrain(Color.green(inPixel[i] * -1));
-            else if(i == 8) westEdgePixelGreen += constrain(Color.green(inPixel[i] * -2));
+            if(i > 4 && i < 8) westEdgePixelGreen += constrain(Color.green(inPixel[i]) * -1);
+            else if(i == 8) westEdgePixelGreen += constrain(Color.green(inPixel[i]) * -2);
         }
 
         for (int i = 0; i < inPixel.length; i++) {
             if (i <= 4) westEdgePixelBlue += constrain(Color.blue((inPixel[i])));
-            if(i > 4 && i < 8) westEdgePixelBlue += constrain(Color.blue(inPixel[i] * -1));
-            else if(i == 8) westEdgePixelBlue += constrain(Color.blue(inPixel[i] * -2));
+            if(i > 4 && i < 8) westEdgePixelBlue += constrain(Color.blue(inPixel[i]) * -1);
+            else if(i == 8) westEdgePixelBlue += constrain(Color.blue(inPixel[i]) * -2);
         }
 
         for (int i = 0; i < inPixel.length; i++) {
             if (i <= 4) westEdgePixelAlpha += Color.alpha(inPixel[i]);
-            if(i > 4 && i < 8) westEdgePixelAlpha += Color.alpha(inPixel[i] * -1);
-            else if(i == 8) westEdgePixelAlpha +=Color.alpha(inPixel[i] * -2);
+            if(i > 4 && i < 8) westEdgePixelAlpha += Color.alpha(inPixel[i]) * -1;
+            else if(i == 8) westEdgePixelAlpha +=Color.alpha(inPixel[i]) * -2;
         }
 
-        westEdgePixelRed = westEdgePixelRed/9;
-        westEdgePixelBlue /= 9;
-        westEdgePixelGreen /= 9;
-        westEdgePixelAlpha /= 9;
+        //westEdgePixelRed = westEdgePixelRed/9;
+        //westEdgePixelBlue /= 9;
+        //westEdgePixelGreen /= 9;
+        //westEdgePixelAlpha /= 9;
         int outPixel = Color.argb(westEdgePixelAlpha, westEdgePixelRed, westEdgePixelBlue, westEdgePixelGreen);
         return outPixel;
     }
