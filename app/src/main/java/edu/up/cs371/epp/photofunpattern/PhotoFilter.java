@@ -65,6 +65,7 @@ public abstract class PhotoFilter {
 
     protected int[] getPixelGrid (int x, int y, Bitmap inBmp) {
         int[] pixelGrid = new int[9];
+        for(int i=0;i<pixelGrid.length;i++) pixelGrid[i] = 0;
 
         if( x > 0 ) {
             if( y > 0 ) {
