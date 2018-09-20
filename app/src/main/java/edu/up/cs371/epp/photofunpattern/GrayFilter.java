@@ -26,7 +26,6 @@ public class GrayFilter extends PhotoFilter {
     * value
     */
 
-
     public int transformPixel(int p5, int p1, int p2, int p3, int p4, int p6, int p7, int p8, int p9) {
         int intensity = (Color.red(p5) + Color.green(p5) +
                 Color.blue(p5)) / 3;

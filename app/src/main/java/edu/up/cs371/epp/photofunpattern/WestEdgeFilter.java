@@ -13,8 +13,6 @@ import android.graphics.Color;
 
 public class WestEdgeFilter extends PhotoFilter {
 
-    private final int ADJUSTMENT = 100;
-
     /*
     * tranformPixel This method overrides the transformPixel in the parent
     * class. It adds 100 to each RGB color component. The maxium value of each
@@ -23,12 +21,50 @@ public class WestEdgeFilter extends PhotoFilter {
     * @param inPixel is a 32 bit pixel that contains RGB color values
     * @return a new Pixel in which each of the RGB components has been increased
     */
-    public int transformPixel(int inPixel[][]) {
-        int red = constrain(Color.red(inPixel[1][1]) + ADJUSTMENT);
-        int green = constrain(Color.green(inPixel[1][1]) + ADJUSTMENT);
-        int blue = constrain(Color.blue(inPixel[1][1]) + ADJUSTMENT);
-        int outPixel = Color.argb(Color.alpha(inPixel[1][1]), red, green, blue);
+    public int transformPixel(int inPixel[]) {
+
+        int westEdgePixelRed = 0;
+        int westEdgePixelGreen = 0;
+        int westEdgePixelBlue = 0;
+        int westEdgePixelAlpha = 0;
+
+        for (int i = 0; i < inPixel.length; i++) {
+            if (i <= 4) westEdgePixelRed += constrain(Color.red(inPixel[i]));
+            if(i > 4 && i < 8) westEdgePixelRed += constrain(Color.red(inPixel[i])* -1);
+            else if(i == 8) westEdgePixelRed += constrain(Color.red(inPixel[i]) * -2);
+        }
+
+        for (int i = 0; i < inPixel.length; i++) {
+            if (i <= 4) westEdgePixelGreen += constrain(Color.green(inPixel[i]));
+            if(i > 4 && i < 8) westEdgePixelGreen += constrain(Color.green(inPixel[i]) * -1);
+            else if(i == 8) westEdgePixelGreen += constrain(Color.green(inPixel[i]) * -2);
+        }
+
+        for (int i = 0; i < inPixel.length; i++) {
+            if (i <= 4) westEdgePixelBlue += constrain(Color.blue((inPixel[i])));
+            if(i > 4 && i < 8) westEdgePixelBlue += constrain(Color.blue(inPixel[i]) * -1);
+            else if(i == 8) westEdgePixelBlue += constrain(Color.blue(inPixel[i]) * -2);
+        }
+
+        for (int i = 0; i < inPixel.length; i++) {
+            if (i <= 4) westEdgePixelAlpha += Color.alpha(inPixel[i]);
+            if(i > 4 && i < 8) westEdgePixelAlpha += Color.alpha(inPixel[i]) * -1;
+            else if(i == 8) westEdgePixelAlpha +=Color.alpha(inPixel[i]) * -2;
+        }
+
+        //westEdgePixelRed = westEdgePixelRed/9;
+        //westEdgePixelBlue /= 9;
+        //westEdgePixelGreen /= 9;
+        //westEdgePixelAlpha /= 9;
+        int outPixel = Color.argb(westEdgePixelAlpha, westEdgePixelRed, westEdgePixelBlue, westEdgePixelGreen);
         return outPixel;
     }
 
+    /*public int getPixelColor(int westEdgePixel) {
+        for (int i = 0; i < inPixel.length; i ++) {
+            westEdgePixel += inPixel[i];
+            if(i > 4) westEdgePixel += (inPixel[i] * -1);
+            else if(i == 8) westEdgePixel += (inPixel[i] * -2);
+        }
+    }*/
 }
