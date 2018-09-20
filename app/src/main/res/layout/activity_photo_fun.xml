@@ -8,6 +8,14 @@
     tools:context="edu.up.cs371.epp.photofun.PhotoFun"
     android:orientation="vertical">
 
+    <Spinner
+        android:id="@+id/imageSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.2"
+        android:background="#00ffff" />
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
