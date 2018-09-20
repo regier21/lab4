@@ -46,4 +46,10 @@ public class WestEdgeFilter extends PhotoFilter {
         }
     }
 
+    protected int getWestEdgeColor(int inPixelColor) {
+        westEdgePixelRed += inPixel[i];
+        if (i > 4) westEdgePixelRed += (inPixel[i] * -1);
+        else if (i == 8) westEdgePixelRed += (inPixel[i] * -2);
+    }
+
 }
