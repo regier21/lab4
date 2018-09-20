@@ -57,6 +57,10 @@ public class PhotoFun extends AppCompatActivity {
                 (Button) findViewById(R.id.westEdgeFilterButton);
         brightnessFilterButton.setOnClickListener
                 (new brightnessFilterButtonListener());
+
+
+        //initImageArray();
+        initSpinner();
     }
 
     /*
@@ -85,7 +89,7 @@ public class PhotoFun extends AppCompatActivity {
 
 
 
-    private String[] myImageNames = ;
+    private String[] myImageNames;
     private ArrayList<Bitmap> myImageBmps;
 
     private void initSpinner (){
