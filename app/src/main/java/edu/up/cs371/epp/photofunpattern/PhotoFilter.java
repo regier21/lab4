@@ -36,8 +36,8 @@ public abstract class PhotoFilter {
     * @param inPixel is a 32 bit pixel that contains RGB color values
     * @return a new Pixel in which unchanged color components
     */
-    protected int transformPixel (int inPixel[][]){
-        return inPixel[1][1];
+    protected int transformPixel (int inPixel[]){
+        return inPixel[8];
     }
 
     /*
@@ -55,7 +55,7 @@ public abstract class PhotoFilter {
 
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
-                int[][] inPixel = getPixelGrid(w,h,inBmp);
+                int[] inPixel = getPixelGrid(w,h,inBmp);
                 int outPixel = transformPixel(inPixel);
                 newBmp.setPixel(w, h, outPixel);
             }
@@ -63,34 +63,34 @@ public abstract class PhotoFilter {
         return newBmp;
     }
 
-    protected int[][] getPixelGrid (int x, int y, Bitmap inBmp) {
-        int[][] pixelGrid = new int[3][3];
+    protected int[] getPixelGrid (int x, int y, Bitmap inBmp) {
+        int[] pixelGrid = new int[9];
 
         if( x > 0 ) {
             if( y > 0 ) {
-                pixelGrid[0][0] = inBmp.getPixel(x-1,y-1);
+                pixelGrid[0] = inBmp.getPixel(x-1,y-1); //Left-top
             }
             if( y < inBmp.getHeight()-1) {
-                pixelGrid[0][2] = inBmp.getPixel(x-1,y+1);
+                pixelGrid[1] = inBmp.getPixel(x-1,y+1); //Left-bottom
             }
-            pixelGrid[0][1] = inBmp.getPixel(x-1,y);
+            pixelGrid[2] = inBmp.getPixel(x-1,y); //Left-middle
         }
         if( x < inBmp.getWidth()-1) {
             if( y > 0 ) {
-                pixelGrid[2][0] = inBmp.getPixel(x+1,y-1);
+                pixelGrid[5] = inBmp.getPixel(x+1,y-1); //Right-top
             }
             if( y < inBmp.getHeight()-1) {
-                pixelGrid[2][2] = inBmp.getPixel(x+1,y+1);
+                pixelGrid[6] = inBmp.getPixel(x+1,y+1); //Right-bottom
             }
-            pixelGrid[2][1] = inBmp.getPixel(x+1,y);
+            pixelGrid[7] = inBmp.getPixel(x+1,y); //Right-middle
         }
         if( y > 0 ) {
-            pixelGrid[1][0] = inBmp.getPixel(x,y-1);
+            pixelGrid[3] = inBmp.getPixel(x,y-1); //Middle-Top
         }
         if( y < inBmp.getHeight()-1) {
-            pixelGrid[1][2] = inBmp.getPixel(x,y+1);
+            pixelGrid[4] = inBmp.getPixel(x,y+1); //Middle-bottom
         }
-        pixelGrid[1][1] = inBmp.getPixel(x,y);
+        pixelGrid[8] = inBmp.getPixel(x,y); //Middle
 
         return pixelGrid;
     }
