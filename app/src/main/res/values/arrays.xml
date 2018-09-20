@@ -7,13 +7,17 @@
         <item>@drawable/two</item>
         <item>@drawable/cheese</item>
         <item>@drawable/edcepp</item>
+        <item>@drawable/olivia50noise</item>
+        <item>@drawable/olivia</item>
     </array>
 
     <string-array name="imageNames">
         <item>Olivia</item>
-        <item>Noise image of Olivia</item>
+        <item>Noise 25 image of Olivia</item>
         <item>Women in a window</item>
         <item>Cheese molds</item>
         <item>Ed C Epp</item>
+        <item>Noise 50 image of Olivia</item>
+        <item>Olivia original</item>
     </string-array>
 </resources>
