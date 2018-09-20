@@ -28,9 +28,22 @@ public class SmoothingFilter extends PhotoFilter {
 
 
     public int transformPixel(int p5, int p1, int p2, int p3, int p4, int p6, int p7, int p8, int p9) {
-        int intensity = (Color.red(p5) + Color.green(p5) +
-                Color.blue(p5)) / 3;
-        return Color.argb(Color.alpha(p5), intensity,intensity,intensity);
+        int red = 0;
+        int blue = 0;
+        int green = 0;
+        int[] colors = {p1, p2, p3, p4, p6, p7, p8, p9};
+        for (int color : colors){
+            red += Color.red(color);
+            blue += Color.blue(color);
+            green += Color.green(color);
+        }
+        red /= 10;
+        blue /= 10;
+        green /= 10;
+        red += Color.red(p5)/5;
+        blue += Color.blue(p5)/5;
+        green += Color.green(p5)/5;
+        return Color.argb(Color.alpha(p5), red, green, blue);
     }
 
     @Override
