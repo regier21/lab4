@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *  https://github.com/edcepp/PhotoFunPattern
  */
 
-public class GrayFilter extends PhotoFilter {
+public class SmoothingFilter extends PhotoFilter {
 
     /*
     * tranformPixel This method overrides the transformPixel in the parent
