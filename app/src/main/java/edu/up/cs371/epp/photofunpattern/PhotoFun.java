@@ -59,9 +59,9 @@ public class PhotoFun extends AppCompatActivity {
         Button smoothingFilterButton =
                 (Button) findViewById(R.id.smoothingFilterButton);
         smoothingFilterButton.setOnClickListener(new grayFilterButtonListener());
-        Button brightnessFilterButton =
+        Button westEdgeFilterButton =
                 (Button) findViewById(R.id.westEdgeFilterButton);
-        brightnessFilterButton.setOnClickListener
+        westEdgeFilterButton.setOnClickListener
                 (new brightnessFilterButtonListener());
 
         initSpinner();
@@ -93,10 +93,6 @@ public class PhotoFun extends AppCompatActivity {
             myNewImageView.setImageBitmap(filter.apply(myOriginalBmp));
         }
     }
-
-
-
-
 
     private void initSpinner (){
         Spinner spinner = (Spinner) findViewById(R.id.imageSpinner);
